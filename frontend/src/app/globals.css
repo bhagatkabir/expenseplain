@@ -1,8 +1,27 @@
 @import "tailwindcss";
 
+/* `dark:` utilities match the `data-theme="dark"` attribute set on <html>
+   by the theme-init script and the theme toggle, instead of the OS-level
+   prefers-color-scheme media query. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+/* No explicit choice yet: fall back to the OS preference. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Explicit choice, made via the theme toggle (persisted in localStorage). */
+:root[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -12,15 +31,14 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tailwind's preflight resets <button> to the browser default (cursor:
+   default) instead of the pointer cursor <a> gets automatically. */
+button:not(:disabled) {
+  cursor: pointer;
 }
