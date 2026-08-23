@@ -1,6 +1,6 @@
-# claude-tut
+# ExpensePlain
 
-Monorepo with a FastAPI backend and a Next.js frontend.
+ExpensePlain tracks your spending, organizes it into budgets, and shows you clear, honest reports — so managing money stops feeling like a chore.
 
 ```
 backend/    FastAPI app (Python 3.10, uvicorn)
