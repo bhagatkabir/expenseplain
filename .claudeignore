@@ -1,0 +1,11 @@
+# Prevent Claude from reading/accessing environment files
+
+# Backend
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Frontend
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
