@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { LogoMark } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useAuth } from "@/hooks/use-auth";
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -9,6 +13,14 @@ const navLinks = [
 ];
 
 export function SiteHeader() {
+  const { isAuthenticated, logout } = useAuth();
+  const router = useRouter();
+
+  function handleLogout() {
+    logout();
+    router.push("/login");
+  }
+
   return (
     <header className="sticky top-0 z-20 border-b border-black/5 bg-background/80 backdrop-blur dark:border-white/10">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
@@ -33,18 +45,38 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <Link
-            href="/login"
-            className="hidden text-sm font-medium text-zinc-700 transition-colors hover:text-foreground sm:block dark:text-zinc-300"
-          >
-            Log in
-          </Link>
-          <Link
-            href="/signup"
-            className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-zinc-700 dark:hover:bg-zinc-200"
-          >
-            Sign up free
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link
+                href="/dashboard"
+                className="hidden text-sm font-medium text-zinc-700 transition-colors hover:text-foreground sm:block dark:text-zinc-300"
+              >
+                Dashboard
+              </Link>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-zinc-700 dark:hover:bg-zinc-200"
+              >
+                Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="hidden text-sm font-medium text-zinc-700 transition-colors hover:text-foreground sm:block dark:text-zinc-300"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/signup"
+                className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-zinc-700 dark:hover:bg-zinc-200"
+              >
+                Sign up free
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

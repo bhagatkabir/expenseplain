@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { Providers } from "@/components/providers";
 import "./globals.css";
 
 // Resolves the theme before hydration so there's no flash of the wrong
@@ -46,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
+        <Providers>{children}</Providers>
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitScript}
         </Script>
