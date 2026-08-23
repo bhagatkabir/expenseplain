@@ -1,0 +1,30 @@
+# Python / backend
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / frontend
+node_modules/
+.next/
+out/
+build/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+
+# .txt
+*.txt
