@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoMark } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -31,6 +32,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           <Link
             href="/login"
             className="hidden text-sm font-medium text-zinc-700 transition-colors hover:text-foreground sm:block dark:text-zinc-300"
