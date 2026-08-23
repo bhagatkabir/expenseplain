@@ -27,4 +27,5 @@ next-env.d.ts
 .vscode/
 
 # .txt
-*.txt
+claude.txt
+/backend/authentication.txt
